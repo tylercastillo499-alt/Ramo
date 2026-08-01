@@ -40,23 +40,19 @@ body {
 }
 
 .titulo {
-  margin-bottom: 180px;
-  font-family: "Arial Narrow", Arial, sans-serif;
-  color: #ff69b4; /* Título cambiado a rosa brillante */
-  position: absolute;
-  font-weight: bold;
-  letter-spacing: 10px;
-  opacity: 0;
-  animation: fadeIn 3s ease-in-out forwards;
-  text-align: center;
-}
-@keyframes fadeIn {
-  from {
+    top: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    color: #ff69b4; /* Título cambiado a rosa brillante */
+    position: absolute;
+    font-weight: bold;
+    letter-spacing: 5px; /* Un poco menos de espacio entre letras para que quepa bien en celular */
     opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    animation: fadeIn 3s ease-in-out forwards;
+    text-align: center;
+    z-index: 100;
 }
 
 .night {

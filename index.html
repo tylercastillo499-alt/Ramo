@@ -4,101 +4,417 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ramo de Rosas Animado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #fff0f5; /* Fondo rosa pálido */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
 
-        .container {
+        body {
+            background: radial-gradient(circle at center, #1a1c2e 0%, #0a0b12 100%);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        /* Contenedor del ramo */
-        #ramo-container {
-            width: 300px;
-            height: 400px;
+            justify-content: center;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
             position: relative;
-            overflow: hidden; /* Para ocultar las flores inicialmente */
         }
 
-        /* Estilos de las rosas (usando caracteres Unicode) */
-        .rosa {
-            font-size: 50px;
-            color: #ff69b4; /* Rosa intenso */
+        /* Estrellas y fondo */
+        .stars-container {
             position: absolute;
-            bottom: -50px; /* Posición inicial fuera del contenedor */
-            transition: bottom 1s ease-in-out; /* Transición para la animación */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        /* Botón para iniciar la animación */
-        #animar-btn {
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
+        .star {
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: twinkle var(--duration, 3s) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .shooting-star {
+            position: absolute;
+            top: 15%;
+            left: -100px;
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0));
+            border-radius: 50%;
+            transform: rotate(-25deg);
+            animation: shoot 6s infinite ease-in-out 1s;
+            opacity: 0;
+        }
+
+        @keyframes shoot {
+            0% { left: -100px; top: 15%; opacity: 0; }
+            10% { opacity: 1; }
+            20% { left: 110%; top: 40%; opacity: 0; }
+            100% { left: 110%; top: 40%; opacity: 0; }
+        }
+
+        /* Encabezado */
+        .title-container {
+            text-align: center;
+            z-index: 10;
             margin-top: 20px;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInTitle 2s ease forwards 0.5s;
+        }
+
+        .title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 182, 193, 0.8),
+                         0 0 20px rgba(255, 105, 180, 0.5),
+                         0 0 30px rgba(255, 105, 180, 0.3);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        @keyframes fadeInTitle {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stage del Ramo */
+        .stage {
+            position: relative;
+            width: 380px;
+            height: 520px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 5;
+        }
+
+        svg.bouquet-svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        /* Animaciones de crecimiento */
+        .stem {
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: growStem 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .leaf {
+            transform-origin: center bottom;
+            transform: scale(0);
+            animation: popLeaf 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .rose-head {
+            transform-origin: center center;
+            transform: scale(0);
+            animation: bloomRose 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            filter: drop-shadow(0 0 12px rgba(255, 105, 180, 0.6));
+        }
+
+        .wrapper-paper {
+            transform-origin: center bottom;
+            transform: scaleY(0) scaleX(0.7);
+            opacity: 0;
+            animation: unfoldWrapper 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 0.8s;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+        }
+
+        .wrapper-ribbon {
+            transform-origin: center center;
+            transform: scale(0);
+            animation: popRibbon 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 2.2s;
+        }
+
+        /* Delays escalonados */
+        .stem-1 { animation-delay: 0.2s; }
+        .stem-2 { animation-delay: 0.4s; }
+        .stem-3 { animation-delay: 0.6s; }
+        .stem-4 { animation-delay: 0.8s; }
+        .stem-5 { animation-delay: 1.0s; }
+
+        .leaf-1 { animation-delay: 1.2s; }
+        .leaf-2 { animation-delay: 1.4s; }
+        .leaf-3 { animation-delay: 1.6s; }
+        .leaf-4 { animation-delay: 1.8s; }
+
+        .rose-1 { animation-delay: 1.8s; }
+        .rose-2 { animation-delay: 2.0s; }
+        .rose-3 { animation-delay: 2.2s; }
+        .rose-4 { animation-delay: 2.4s; }
+        .rose-5 { animation-delay: 2.6s; }
+
+        @keyframes growStem {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes popLeaf {
+            to { transform: scale(1); }
+        }
+
+        @keyframes bloomRose {
+            0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+            60% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        @keyframes unfoldWrapper {
+            to {
+                transform: scaleY(1) scaleX(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes popRibbon {
+            to { transform: scale(1); }
+        }
+
+        /* Botón de Replay */
+        .controls {
+            z-index: 10;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+
+        .btn-replay {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+            transition: all 0.3s ease;
+            outline: none;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-replay:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.6);
+            background: linear-gradient(135deg, #ff85c1, #ff2a9d);
+        }
+
+        /* Partículas flotantes */
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255,192,203,1) 0%, rgba(255,105,180,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 6;
+            animation: floatUp var(--duration) ease-in infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-120px) scale(1.2); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>¡Un Ramo de Rosas para Ti!</h1>
-        <div id="ramo-container">
-            <!-- Las rosas se añadirán aquí dinámicamente con JavaScript -->
-        </div>
-        <button id="animar-btn">Ver Ramo</button>
+
+    <div class="stars-container" id="starsContainer"></div>
+    <div class="shooting-star"></div>
+
+    <div class="title-container">
+        <h1 class="title">Feliz San Valentín,<br>Este Ramo de Flores es Para Ti</h1>
+    </div>
+
+    <div class="stage" id="stage">
+        <svg class="bouquet-svg" viewBox="0 0 400 550">
+            <defs>
+                <!-- Gradientes -->
+                <linearGradient id="paperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#e8c39e"/>
+                    <stop offset="50%" stop-color="#d4a373"/>
+                    <stop offset="100%" stop-color="#bc8a5f"/>
+                </linearGradient>
+                <linearGradient id="paperFoldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#c69363"/>
+                    <stop offset="100%" stop-color="#a97443"/>
+                </linearGradient>
+                <linearGradient id="stemGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#2d5a27"/>
+                    <stop offset="50%" stop-color="#4e8746"/>
+                    <stop offset="100%" stop-color="#1e3f1a"/>
+                </linearGradient>
+                <radialGradient id="rosePetalGrad1" cx="50%" cy="40%" r="60%">
+                    <stop offset="0%" stop-color="#ffb6c1"/>
+                    <stop offset="50%" stop-color="#ff69b4"/>
+                    <stop offset="100%" stop-color="#c71585"/>
+                </radialGradient>
+                <radialGradient id="rosePetalGrad2" cx="40%" cy="30%" r="70%">
+                    <stop offset="0%" stop-color="#ffc0cb"/>
+                    <stop offset="60%" stop-color="#ff1493"/>
+                    <stop offset="100%" stop-color="#a10054"/>
+                </radialGradient>
+                <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffb3d9"/>
+                    <stop offset="50%" stop-color="#ff66b2"/>
+                    <stop offset="100%" stop-color="#cc0066"/>
+                </linearGradient>
+            </defs>
+
+            <!-- TALLOS -->
+            <g id="stemsGroup">
+                <path class="stem stem-1" d="M 200 450 Q 198 300 200 160" stroke="url(#stemGrad)" stroke-width="7" fill="none" stroke-linecap="round"/>
+                <path class="stem stem-2" d="M 195 440 Q 170 300 140 180" stroke="url(#stemGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+                <path class="stem stem-3" d="M 205 440 Q 230 300 260 180" stroke="url(#stemGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+                <path class="stem stem-4" d="M 190 430 Q 140 320 100 230" stroke="url(#stemGrad)" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+                <path class="stem stem-5" d="M 210 430 Q 260 320 300 230" stroke="url(#stemGrad)" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+            </g>
+
+            <!-- HOJAS -->
+            <g id="leavesGroup">
+                <path class="leaf leaf-1" d="M 170 280 C 140 260 120 280 130 300 C 150 310 170 295 170 280 Z" fill="#3a6b35" stroke="#1e3f1a" stroke-width="1"/>
+                <path class="leaf leaf-2" d="M 230 280 C 260 260 280 280 270 300 C 250 310 230 295 230 280 Z" fill="#477f42" stroke="#1e3f1a" stroke-width="1"/>
+                <path class="leaf leaf-3" d="M 130 340 C 100 330 85 350 100 365 C 120 370 135 355 130 340 Z" fill="#2d5a27" stroke="#1e3f1a" stroke-width="1"/>
+                <path class="leaf leaf-4" d="M 270 340 C 300 330 315 350 300 365 C 280 370 265 355 270 340 Z" fill="#3a6b35" stroke="#1e3f1a" stroke-width="1"/>
+            </g>
+
+            <!-- ROSAS -->
+            <g id="rosesGroup">
+                <!-- Rosa 1: Centro -->
+                <g class="rose-head rose-1" transform="translate(200, 140)">
+                    <path d="M -15 20 Q 0 35 15 20 Q 0 10 -15 20" fill="#2d5a27"/>
+                    <path d="M -30 5 C -35 -20 35 -20 30 5 C 35 30 -35 30 -30 5 Z" fill="url(#rosePetalGrad2)"/>
+                    <path d="M -22 -5 C -25 -25 25 -25 22 -5 C 25 20 -25 20 -22 -5 Z" fill="url(#rosePetalGrad1)"/>
+                    <path d="M -15 -10 C -18 -22 18 -22 15 -10 C 18 12 -18 12 -15 -10 Z" fill="#ff1493"/>
+                    <path d="M -8 -12 C -10 -18 10 -18 8 -12 C 10 5 -10 5 -8 -12 Z" fill="#ffb6c1"/>
+                    <circle cx="0" cy="-10" r="4" fill="#ffffff" opacity="0.6"/>
+                </g>
+                <!-- Rosa 2: Izquierda alta -->
+                <g class="rose-head rose-2" transform="translate(135, 165)">
+                    <path d="M -28 5 C -33 -18 30 -18 26 5 C 30 28 -30 28 -28 5 Z" fill="url(#rosePetalGrad1)"/>
+                    <path d="M -20 -4 C -22 -22 22 -22 18 -4 C 22 18 -22 18 -20 -4 Z" fill="url(#rosePetalGrad2)"/>
+                    <path d="M -12 -8 C -15 -18 15 -18 12 -8 C 15 10 -15 10 -12 -8 Z" fill="#ff3399"/>
+                    <circle cx="-2" cy="-8" r="3" fill="#ffffff" opacity="0.5"/>
+                </g>
+                <!-- Rosa 3: Derecha alta -->
+                <g class="rose-head rose-3" transform="translate(265, 165)">
+                    <path d="M -26 5 C -30 -18 33 -18 28 5 C 33 28 -28 28 -26 5 Z" fill="url(#rosePetalGrad1)"/>
+                    <path d="M -18 -4 C -22 -22 22 -22 20 -4 C 22 18 -22 18 -18 -4 Z" fill="url(#rosePetalGrad2)"/>
+                    <path d="M -12 -8 C -15 -18 15 -18 12 -8 C 15 10 -15 10 -12 -8 Z" fill="#ff3399"/>
+                    <circle cx="2" cy="-8" r="3" fill="#ffffff" opacity="0.5"/>
+                </g>
+                <!-- Rosa 4: Izquierda baja -->
+                <g class="rose-head rose-4" transform="translate(95, 215)">
+                    <path d="M -25 4 C -28 -16 28 -16 24 4 C 28 24 -26 24 -25 4 Z" fill="url(#rosePetalGrad2)"/>
+                    <path d="M -16 -3 C -18 -18 18 -18 15 -3 C 18 15 -18 15 -16 -3 Z" fill="url(#rosePetalGrad1)"/>
+                    <path d="M -10 -6 C -12 -15 12 -15 9 -6 C 12 8 -12 8 -10 -6 Z" fill="#ff1493"/>
+                </g>
+                <!-- Rosa 5: Derecha baja -->
+                <g class="rose-head rose-5" transform="translate(305, 215)">
+                    <path d="M -24 4 C -28 -16 25 -16 24 4 C 26 24 -28 24 -24 4 Z" fill="url(#rosePetalGrad2)"/>
+                    <path d="M -15 -3 C -18 -18 18 -18 16 -3 C 18 15 -18 15 -15 -3 Z" fill="url(#rosePetalGrad1)"/>
+                    <path d="M -9 -6 C -12 -15 12 -15 10 -6 C 12 8 -12 8 -9 -6 Z" fill="#ff1493"/>
+                </g>
+            </g>
+
+            <!-- ENVOLTORIO MARRÓN -->
+            <g id="wrapperGroup" class="wrapper-paper">
+                <path d="M 120 320 L 200 480 L 280 320 L 350 260 L 200 310 L 50 260 Z" fill="#a97443" opacity="0.7"/>
+                <path d="M 60 270 L 195 485 L 195 320 L 70 260 Z" fill="url(#paperFoldGrad)"/>
+                <path d="M 50 260 L 200 490 L 170 320 Z" fill="url(#paperGrad)"/>
+                <path d="M 350 260 L 200 490 L 230 320 Z" fill="url(#paperGrad)"/>
+                <polygon points="70,270 200,500 330,270 200,330" fill="url(#paperGrad)"/>
+                <path d="M 70 270 Q 200 340 330 270 L 200 500 Z" fill="url(#paperFoldGrad)" opacity="0.4"/>
+            </g>
+
+            <!-- LAZO ROSA -->
+            <g id="ribbonGroup" class="wrapper-ribbon">
+                <path d="M 195 420 Q 170 460 150 490 Q 165 495 185 460 Z" fill="url(#ribbonGrad)"/>
+                <path d="M 205 420 Q 230 460 250 490 Q 235 495 215 460 Z" fill="url(#ribbonGrad)"/>
+                <path d="M 200 420 C 160 390 140 430 195 423 Z" fill="url(#ribbonGrad)"/>
+                <path d="M 200 420 C 240 390 260 430 205 423 Z" fill="url(#ribbonGrad)"/>
+                <circle cx="200" cy="421" r="8" fill="#ff1493"/>
+                <circle cx="199" cy="420" r="6" fill="url(#ribbonGrad)"/>
+            </g>
+        </svg>
+    </div>
+
+    <div class="controls">
+        <button class="btn-replay" onclick="replayAnimation()">Ver Animación de Nuevo 🌹</button>
     </div>
 
     <script>
-        const ramoContainer = document.getElementById('ramo-container');
-        const animarBtn = document.getElementById('animar-btn');
-
-        // Función para crear y añadir rosas al ramo
-        function crearRamo() {
-            // Limpiar el contenedor si ya hay rosas
-            ramoContainer.innerHTML = '';
-
-            const numeroRosas = 10; // Número de rosas en el ramo
-
-            for (let i = 0; i < numeroRosas; i++) {
-                const rosa = document.createElement('span');
-                rosa.classList.add('rosa');
-                rosa.textContent = '🌹'; // Carácter Unicode de rosa
-
-                // Posicionamiento aleatorio horizontal
-                const xPos = Math.random() * (ramoContainer.offsetWidth - 50);
-                rosa.style.left = `${xPos}px`;
-
-                ramoContainer.appendChild(rosa);
+        function createStars() {
+            const container = document.getElementById('starsContainer');
+            for (let i = 0; i < 60; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                container.appendChild(star);
             }
         }
 
-        // Función para iniciar la animación
-        function animarRamo() {
-            crearRamo(); // Crear las rosas primero
-
-            const rosas = document.querySelectorAll('.rosa');
-
-            // Retraso para que las rosas suban una por una
-            rosas.forEach((rosa, index) => {
+        function createParticles() {
+            const stage = document.getElementById('stage');
+            for (let i = 0; i < 20; i++) {
                 setTimeout(() => {
-                    rosa.style.bottom = '10px'; // Posición final de las rosas
-                }, index * 200); // 200ms de retraso entre cada rosa
-            });
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    const size = Math.random() * 6 + 3;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 260 + 60}px`;
+                    particle.style.bottom = `${Math.random() * 200 + 150}px`;
+                    particle.style.setProperty('--duration', `${Math.random() * 2 + 2.5}s`);
+                    stage.appendChild(particle);
+
+                    setTimeout(() => particle.remove(), 4500);
+                }, i * 300 + 1500);
+            }
         }
 
-        animarBtn.addEventListener('click', animarRamo);
+        function replayAnimation() {
+            const stage = document.getElementById('stage');
+            const content = stage.innerHTML;
+            stage.innerHTML = '';
+            setTimeout(() => {
+                stage.innerHTML = content;
+                createParticles();
+            }, 50);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            createParticles();
+        });
     </script>
 </body>
 </html>

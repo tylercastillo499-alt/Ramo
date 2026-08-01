@@ -37,12 +37,12 @@ body {
       margin-bottom: 530px;
       letter-spacing: 3px;
   }
-
 }
+
 .titulo {
   margin-bottom: 180px;
   font-family: "Arial Narrow", Arial, sans-serif;
-  color: yellow;
+  color: #ff69b4; /* Título cambiado a rosa brillante */
   position: absolute;
   font-weight: bold;
   letter-spacing: 10px;
@@ -76,7 +76,7 @@ body {
     radial-gradient(
       ellipse at bottom,
       var(--dark-color),
-      rgba(145, 233, 255, 0.2)
+      rgba(255, 105, 180, 0.2) /* Fondo rosado sutil */
     ),
     repeating-linear-gradient(
       220deg,
@@ -99,25 +99,21 @@ body {
       transparent 19px,
       transparent 22px
     ),
-    linear-gradient(90deg, rgb(0, 255, 250), rgb(240, 240, 240));
+    linear-gradient(90deg, rgb(255, 20, 147), rgb(240, 240, 240)); /* Degradado nocturno rosa */
 }
 
 .flowers {
   position: relative;
   transform: scale(0.9);
-  /*margin-bottom: 100px;
-  */
 }
 
 @media only screen and (max-width: 600px) {
-  /* Estilos específicos para dispositivos con un ancho máximo de 600px */
-.flowers {
+  .flowers {
       font-size: 14px;
       margin-bottom: 35%;
       letter-spacing: 3px;
       transform: scale(1.0);
-}
-
+  }
 }
 
 .flower {
@@ -238,8 +234,7 @@ body {
   transform: translate(-50%, -100%);
   width: 8vmin;
   height: 8vmin;
-  background-color: #f9fd25;
-  /* background-color: #fd2525; */
+  background-color: #ff69b4; /* Resplandor central rosa */
   filter: blur(10vmin);
 }
 .flower__leaf {
@@ -249,8 +244,8 @@ body {
   width: 8vmin;
   height: 11vmin;
   border-radius: 51% 49% 47% 53%/44% 45% 55% 69%;
-  background-color: #253bfd;
-  background-color: #fddd25;
+  background-color: #ff69b4; /* Color principal de pétalo */
+  background-image: linear-gradient(to top, #ff1493, #ffb6c1); /* Degradado a rosa suave */
   transform-origin: bottom center;
   opacity: 0.9;
   box-shadow: inset 0 0 2vmin rgba(255, 255, 255, 0.5);
@@ -270,7 +265,7 @@ body {
   transform-origin: bottom left;
   border-radius: 4vmin 10vmin 4vmin 4vmin;
   transform: translate(0%, 18%) rotateX(70deg) rotate(-43deg);
-  background-color: #7c6901;
+  background-color: #c71585; /* Pétalo interno más oscuro */
   z-index: 1;
   opacity: 0.8;
 }
@@ -281,7 +276,7 @@ body {
   width: 9vmin;
   height: 4vmin;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: #ffe4e1; /* Rosa claro muy suave */
 }
 .flower__white-circle::after {
   content: "";
@@ -397,7 +392,7 @@ body {
       transparent 1px,
       transparent 12px
     ),
-    linear-gradient(90deg, rgb(255, 235, 18), rgb(255, 206, 0));
+    linear-gradient(90deg, rgb(255, 105, 180), rgb(255, 20, 147)); /* Centro rosado intenso */
 }
 .flower__line {
   height: 55vmin;
@@ -462,14 +457,14 @@ body {
   bottom: 0vmin;
   width: 1vmin;
   height: 1vmin;
-  background-color: rgb(255, 251, 0);
+  background-color: rgb(255, 182, 193); /* Luces rosadas */
   border-radius: 50%;
   filter: blur(0.2vmin);
   -webkit-animation: light-ans 4s linear infinite backwards;
   animation: light-ans 4s linear infinite backwards;
 }
 .flower__light:nth-child(odd) {
-  background-color: #23f0ff;
+  background-color: #ff1493; /* Luces rosa fuerte */
 }
 .flower__light--1 {
   left: -2vmin;
@@ -1024,7 +1019,7 @@ body {
 .flower__g-fr {
   position: absolute;
   bottom: -4vmin;
-  left: vmin;
+  left: 0vmin;
   transform-origin: bottom left;
   z-index: 10;
   -webkit-animation: flower__g-fr-ans 2s linear infinite;
@@ -1070,7 +1065,7 @@ body {
       transparent,
       var(--dark-color) 98%
     ),
-    linear-gradient(to bottom right, #23f0ff 45%, transparent 50%, transparent);
+    linear-gradient(to bottom right, #ff69b4 45%, transparent 50%, transparent);
   -webkit-mask-image: linear-gradient(
     135deg,
     #159faa 40%,
@@ -1606,8 +1601,7 @@ body {
 .container * {
   -webkit-animation-play-state: paused !important;
   animation-play-state: paused !important;
-} /*# sourceMappingURL=main.css.map */
-
+}
 
 /* Reset de estilos básicos */
 body, h1, p {
@@ -1636,25 +1630,20 @@ h1 {
 
 /* Media Queries para tamaños de pantalla diferentes */
 @media screen and (max-width: 600px) {
-  /* Estilos para pantallas pequeñas */
   h1 {
       font-size: 1.5em;
   }
 }
 
 @media screen and (min-width: 601px) and (max-width: 1024px) {
-  /* Estilos para pantallas medianas */
   h1 {
       font-size: 1.8em;
   }
 }
 
 @media screen and (min-width: 1025px) {
-  /* Estilos para pantallas grandes */
   h1 {
       font-size: 2em;
   }
 }
-
-/* Agregar más estilos según sea necesario */
 

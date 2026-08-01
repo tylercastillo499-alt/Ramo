@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramo de Rosas Animado</title>
+    <title>Este Ramo de Flores es Para Ti</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
         }
 
         body {
-            background: radial-gradient(circle at center, #1a1c2e 0%, #0a0b12 100%);
+            background: radial-gradient(circle at center, #121722 0%, #05070a 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -27,7 +27,7 @@
             position: relative;
         }
 
-        /* Estrellas y fondo */
+        /* Estrellas de fondo */
         .stars-container {
             position: absolute;
             top: 0;
@@ -48,47 +48,47 @@
 
         @keyframes twinkle {
             0%, 100% { opacity: 0.2; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); }
+            50% { opacity: 1; transform: scale(1.3); }
         }
 
         .shooting-star {
             position: absolute;
             top: 15%;
             left: -100px;
-            width: 120px;
+            width: 140px;
             height: 2px;
             background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0));
             border-radius: 50%;
             transform: rotate(-25deg);
-            animation: shoot 6s infinite ease-in-out 1s;
+            animation: shoot 5s infinite ease-in-out 1s;
             opacity: 0;
         }
 
         @keyframes shoot {
             0% { left: -100px; top: 15%; opacity: 0; }
             10% { opacity: 1; }
-            20% { left: 110%; top: 40%; opacity: 0; }
+            25% { left: 110%; top: 40%; opacity: 0; }
             100% { left: 110%; top: 40%; opacity: 0; }
         }
 
-        /* Encabezado */
+        /* Título */
         .title-container {
             text-align: center;
             z-index: 10;
-            margin-top: 20px;
-            margin-bottom: 10px;
+            margin-top: 10px;
+            margin-bottom: 5px;
             opacity: 0;
             transform: translateY(-20px);
-            animation: fadeInTitle 2s ease forwards 0.5s;
+            animation: fadeInTitle 2s ease forwards 0.3s;
         }
 
         .title {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 182, 193, 0.8),
-                         0 0 20px rgba(255, 105, 180, 0.5),
-                         0 0 30px rgba(255, 105, 180, 0.3);
+            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+            color: #ffffff;
+            text-shadow: 0 0 12px rgba(255, 182, 193, 0.9),
+                         0 0 25px rgba(255, 105, 180, 0.7),
+                         0 0 40px rgba(255, 105, 180, 0.4);
             letter-spacing: 1px;
             line-height: 1.2;
         }
@@ -100,11 +100,11 @@
             }
         }
 
-        /* Stage del Ramo */
+        /* Contenedor del Ramo */
         .stage {
             position: relative;
-            width: 380px;
-            height: 520px;
+            width: 420px;
+            height: 560px;
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -117,57 +117,60 @@
             overflow: visible;
         }
 
-        /* Animaciones de crecimiento */
+        /* Animaciones */
         .stem {
-            stroke-dasharray: 400;
-            stroke-dashoffset: 400;
-            animation: growStem 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            stroke-dasharray: 450;
+            stroke-dashoffset: 450;
+            animation: growStem 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         .leaf {
-            transform-origin: center bottom;
-            transform: scale(0);
-            animation: popLeaf 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        .rose-head {
             transform-origin: center center;
             transform: scale(0);
-            animation: bloomRose 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            filter: drop-shadow(0 0 12px rgba(255, 105, 180, 0.6));
+            animation: popLeaf 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .flower-bud {
+            transform-origin: center bottom;
+            transform: scale(0);
+            animation: bloomBud 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            filter: drop-shadow(0 0 16px rgba(255, 105, 180, 0.8));
         }
 
         .wrapper-paper {
             transform-origin: center bottom;
             transform: scaleY(0) scaleX(0.7);
             opacity: 0;
-            animation: unfoldWrapper 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 0.8s;
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+            animation: unfoldWrapper 1.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 0.6s;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
         }
 
         .wrapper-ribbon {
             transform-origin: center center;
             transform: scale(0);
-            animation: popRibbon 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 2.2s;
+            animation: popRibbon 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 2.0s;
         }
 
-        /* Delays escalonados */
-        .stem-1 { animation-delay: 0.2s; }
-        .stem-2 { animation-delay: 0.4s; }
-        .stem-3 { animation-delay: 0.6s; }
-        .stem-4 { animation-delay: 0.8s; }
-        .stem-5 { animation-delay: 1.0s; }
+        /* Retrasos escalonados */
+        .stem-1 { animation-delay: 0.1s; }
+        .stem-2 { animation-delay: 0.25s; }
+        .stem-3 { animation-delay: 0.4s; }
+        .stem-4 { animation-delay: 0.55s; }
+        .stem-5 { animation-delay: 0.7s; }
+        .stem-6 { animation-delay: 0.85s; }
+        .stem-7 { animation-delay: 1.0s; }
 
-        .leaf-1 { animation-delay: 1.2s; }
-        .leaf-2 { animation-delay: 1.4s; }
-        .leaf-3 { animation-delay: 1.6s; }
-        .leaf-4 { animation-delay: 1.8s; }
+        .leaf-group-1 { animation-delay: 1.1s; }
+        .leaf-group-2 { animation-delay: 1.3s; }
+        .leaf-group-3 { animation-delay: 1.5s; }
 
-        .rose-1 { animation-delay: 1.8s; }
-        .rose-2 { animation-delay: 2.0s; }
-        .rose-3 { animation-delay: 2.2s; }
-        .rose-4 { animation-delay: 2.4s; }
-        .rose-5 { animation-delay: 2.6s; }
+        .flower-1 { animation-delay: 1.6s; }
+        .flower-2 { animation-delay: 1.75s; }
+        .flower-3 { animation-delay: 1.9s; }
+        .flower-4 { animation-delay: 2.05s; }
+        .flower-5 { animation-delay: 2.2s; }
+        .flower-6 { animation-delay: 2.35s; }
+        .flower-7 { animation-delay: 2.5s; }
 
         @keyframes growStem {
             to { stroke-dashoffset: 0; }
@@ -177,10 +180,10 @@
             to { transform: scale(1); }
         }
 
-        @keyframes bloomRose {
-            0% { transform: scale(0) rotate(-10deg); opacity: 0; }
-            60% { transform: scale(1.1) rotate(5deg); opacity: 1; }
-            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        @keyframes bloomBud {
+            0% { transform: scale(0) translateY(20px); opacity: 0; }
+            70% { transform: scale(1.1) translateY(-3px); opacity: 1; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
         }
 
         @keyframes unfoldWrapper {
@@ -194,11 +197,11 @@
             to { transform: scale(1); }
         }
 
-        /* Botón de Replay */
+        /* Botón */
         .controls {
             z-index: 10;
-            margin-top: 15px;
-            margin-bottom: 25px;
+            margin-top: 10px;
+            margin-bottom: 20px;
         }
 
         .btn-replay {
@@ -213,19 +216,17 @@
             box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
             transition: all 0.3s ease;
             outline: none;
-            letter-spacing: 0.5px;
         }
 
         .btn-replay:hover {
             transform: translateY(-2px) scale(1.03);
             box-shadow: 0 6px 20px rgba(255, 20, 147, 0.6);
-            background: linear-gradient(135deg, #ff85c1, #ff2a9d);
         }
 
-        /* Partículas flotantes */
+        /* Partículas de destellos */
         .particle {
             position: absolute;
-            background: radial-gradient(circle, rgba(255,192,203,1) 0%, rgba(255,105,180,0) 70%);
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,182,193,0.8) 50%, rgba(255,105,180,0) 100%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 6;
@@ -233,9 +234,9 @@
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(0) scale(0.5); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-120px) scale(1.2); opacity: 0; }
+            0% { transform: translateY(0) scale(0.4); opacity: 0; }
+            50% { opacity: 0.9; }
+            100% { transform: translateY(-130px) scale(1.2); opacity: 0; }
         }
     </style>
 </head>
@@ -245,118 +246,177 @@
     <div class="shooting-star"></div>
 
     <div class="title-container">
-        <h1 class="title">Feliz San Valentín,<br>Este Ramo de Flores es Para Ti</h1>
+        <h1 class="title">Este Ramo de Flores es Para Ti</h1>
     </div>
 
     <div class="stage" id="stage">
         <svg class="bouquet-svg" viewBox="0 0 400 550">
             <defs>
-                <!-- Gradientes -->
+                <!-- Gradientes del Envoltorio (Estilo Kraft suave) -->
                 <linearGradient id="paperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#e8c39e"/>
-                    <stop offset="50%" stop-color="#d4a373"/>
-                    <stop offset="100%" stop-color="#bc8a5f"/>
+                    <stop offset="0%" stop-color="#f5d6ba"/>
+                    <stop offset="50%" stop-color="#e2b997"/>
+                    <stop offset="100%" stop-color="#c89973"/>
                 </linearGradient>
                 <linearGradient id="paperFoldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#c69363"/>
-                    <stop offset="100%" stop-color="#a97443"/>
+                    <stop offset="0%" stop-color="#d3a078"/>
+                    <stop offset="100%" stop-color="#b07d56"/>
                 </linearGradient>
+
+                <!-- Gradiente para Tallos Fuertes -->
                 <linearGradient id="stemGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#2d5a27"/>
-                    <stop offset="50%" stop-color="#4e8746"/>
-                    <stop offset="100%" stop-color="#1e3f1a"/>
+                    <stop offset="0%" stop-color="#2a5a22"/>
+                    <stop offset="50%" stop-color="#4d8c42"/>
+                    <stop offset="100%" stop-color="#1b3d16"/>
                 </linearGradient>
-                <radialGradient id="rosePetalGrad1" cx="50%" cy="40%" r="60%">
-                    <stop offset="0%" stop-color="#ffb6c1"/>
-                    <stop offset="50%" stop-color="#ff69b4"/>
-                    <stop offset="100%" stop-color="#c71585"/>
+
+                <!-- Gradientes para Hojas Verdes Vibrantes -->
+                <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#5fa053"/>
+                    <stop offset="50%" stop-color="#3c7a31"/>
+                    <stop offset="100%" stop-color="#1e4417"/>
+                </linearGradient>
+                <linearGradient id="leafGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#73b666"/>
+                    <stop offset="50%" stop-color="#46873b"/>
+                    <stop offset="100%" stop-color="#234c1c"/>
+                </linearGradient>
+
+                <!-- Gradientes de Pétalos Estilo Tulipán/Capullo Rosa (Igual a la imagen) -->
+                <radialGradient id="roseBudGrad" cx="50%" cy="30%" r="70%">
+                    <stop offset="0%" stop-color="#ffb3da"/>
+                    <stop offset="45%" stop-color="#ff4da6"/>
+                    <stop offset="85%" stop-color="#e60073"/>
+                    <stop offset="100%" stop-color="#99004d"/>
                 </radialGradient>
-                <radialGradient id="rosePetalGrad2" cx="40%" cy="30%" r="70%">
-                    <stop offset="0%" stop-color="#ffc0cb"/>
-                    <stop offset="60%" stop-color="#ff1493"/>
-                    <stop offset="100%" stop-color="#a10054"/>
-                </radialGradient>
+                <linearGradient id="petalGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="30%" stop-color="#ff80bf"/>
+                    <stop offset="100%" stop-color="#d6006e"/>
+                </linearGradient>
+
+                <!-- Gradiente para el Lazo Rosa -->
                 <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ffb3d9"/>
+                    <stop offset="0%" stop-color="#ffb8d9"/>
                     <stop offset="50%" stop-color="#ff66b2"/>
                     <stop offset="100%" stop-color="#cc0066"/>
                 </linearGradient>
+
+                <!-- Plantilla de Hoja Indivudual -->
+                <g id="singleLeaf">
+                    <path d="M 0 0 C -15 -20 -25 -45 0 -65 C 25 -45 15 -20 0 0 Z" fill="url(#leafGrad1)" stroke="#1a3b14" stroke-width="1"/>
+                    <path d="M 0 0 C -2 -20 0 -45 0 -65" stroke="#73b666" stroke-width="1.5" fill="none" opacity="0.7"/>
+                </g>
+
+                <!-- Plantilla de Flor Capullo Estilo Imagen 2 -->
+                <g id="flowerBud">
+                    <!-- Cáliz/Base verde de la flor -->
+                    <path d="M -12 15 C -15 35 15 35 12 15 C 8 2 12 -5 0 -8 C -12 -5 -8 2 -12 15 Z" fill="#3c7a31"/>
+                    <path d="M -6 18 Q 0 32 6 18 Q 0 10 -6 18" fill="#5fa053"/>
+
+                    <!-- Pétalos Traseros Extremos -->
+                    <path d="M -24 5 C -35 -20 -20 -48 -8 -52 C 2 -55 12 -35 8 5 Z" fill="url(#roseBudGrad)" opacity="0.9"/>
+                    <path d="M 24 5 C 35 -20 20 -48 8 -52 C -2 -55 -12 -35 -8 5 Z" fill="url(#roseBudGrad)" opacity="0.9"/>
+
+                    <!-- Pétalos Principales del Capullo -->
+                    <path d="M -22 10 C -32 -15 -18 -55 0 -60 C 18 -55 32 -15 22 10 C 12 30 -12 30 -22 10 Z" fill="url(#roseBudGrad)"/>
+
+                    <!-- Pétalos Centrales Superpuestos con Borde Brillante -->
+                    <path d="M -16 5 C -24 -15 -12 -52 0 -54 C 12 -52 24 -15 16 5 C 8 22 -8 22 -16 5 Z" fill="url(#petalGlow)"/>
+                    <path d="M -10 2 C -16 -12 -8 -42 0 -45 C 8 -42 16 -12 10 2 C 5 15 -5 15 -10 2 Z" fill="url(#roseBudGrad)"/>
+                    
+                    <!-- Centro del capullo -->
+                    <ellipse cx="0" cy="-22" rx="5" ry="12" fill="#ffc2e0" opacity="0.9"/>
+                </g>
             </defs>
 
-            <!-- TALLOS -->
+            <!-- TALLOS MÁS DENSOS Y POTENTES -->
             <g id="stemsGroup">
-                <path class="stem stem-1" d="M 200 450 Q 198 300 200 160" stroke="url(#stemGrad)" stroke-width="7" fill="none" stroke-linecap="round"/>
-                <path class="stem stem-2" d="M 195 440 Q 170 300 140 180" stroke="url(#stemGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
-                <path class="stem stem-3" d="M 205 440 Q 230 300 260 180" stroke="url(#stemGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
-                <path class="stem stem-4" d="M 190 430 Q 140 320 100 230" stroke="url(#stemGrad)" stroke-width="5.5" fill="none" stroke-linecap="round"/>
-                <path class="stem stem-5" d="M 210 430 Q 260 320 300 230" stroke="url(#stemGrad)" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+                <path class="stem stem-1" d="M 200 460 Q 198 300 200 130" stroke="url(#stemGrad)" stroke-width="8.5" fill="none" stroke-linecap="round"/>
+                <path class="stem stem-2" d="M 195 450 Q 170 300 145 170" stroke="url(#stemGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <path class="stem stem-3" d="M 205 450 Q 230 300 255 170" stroke="url(#stemGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <path class="stem stem-4" d="M 190 440 Q 135 320 95 210" stroke="url(#stemGrad)" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+                <path class="stem stem-5" d="M 210 440 Q 265 320 305 210" stroke="url(#stemGrad)" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+                <path class="stem stem-6" d="M 185 430 Q 115 330 65 240" stroke="url(#stemGrad)" stroke-width="7" fill="none" stroke-linecap="round"/>
+                <path class="stem stem-7" d="M 215 430 Q 285 330 335 240" stroke="url(#stemGrad)" stroke-width="7" fill="none" stroke-linecap="round"/>
             </g>
 
-            <!-- HOJAS -->
+            <!-- FOLLAJE ABUNDANTE (HOJAS EN LOS TALLOS) -->
             <g id="leavesGroup">
-                <path class="leaf leaf-1" d="M 170 280 C 140 260 120 280 130 300 C 150 310 170 295 170 280 Z" fill="#3a6b35" stroke="#1e3f1a" stroke-width="1"/>
-                <path class="leaf leaf-2" d="M 230 280 C 260 260 280 280 270 300 C 250 310 230 295 230 280 Z" fill="#477f42" stroke="#1e3f1a" stroke-width="1"/>
-                <path class="leaf leaf-3" d="M 130 340 C 100 330 85 350 100 365 C 120 370 135 355 130 340 Z" fill="#2d5a27" stroke="#1e3f1a" stroke-width="1"/>
-                <path class="leaf leaf-4" d="M 270 340 C 300 330 315 350 300 365 C 280 370 265 355 270 340 Z" fill="#3a6b35" stroke="#1e3f1a" stroke-width="1"/>
+                <!-- Capa Inferior de Hojas -->
+                <g class="leaf leaf-group-1" transform="translate(145, 330) rotate(-45) scale(0.9)"><use href="#singleLeaf"/></g>
+                <g class="leaf leaf-group-1" transform="translate(255, 330) rotate(45) scale(0.9)"><use href="#singleLeaf"/></g>
+                <g class="leaf leaf-group-1" transform="translate(105, 350) rotate(-60) scale(0.85)"><use href="#singleLeaf"/></g>
+                <g class="leaf leaf-group-1" transform="translate(295, 350) rotate(60) scale(0.85)"><use href="#singleLeaf"/></g>
+
+                <!-- Capa Media de Hojas -->
+                <g class="leaf leaf-group-2" transform="translate(170, 260) rotate(-35) scale(1.1)"><use href="#singleLeaf"/></g>
+                <g class="leaf leaf-group-2" transform="translate(230, 260) rotate(35) scale(1.1)"><use href="#singleLeaf"/></g>
+                <g class="leaf leaf-group-2" transform="translate(120, 280) rotate(-50) scale(1)"><use href="#singleLeaf"/></g>
+                <g class="leaf leaf-group-2" transform="translate(280, 280) rotate(50) scale(1)"><use href="#singleLeaf"/></g>
+                <g class="leaf leaf-group-2" transform="translate(75, 300) rotate(-65) scale(0.9)"><use href="#singleLeaf"/></g>
+                <g class="leaf leaf-group-2" transform="translate(325, 300) rotate(65) scale(0.9)"><use href="#singleLeaf"/></g>
+
+                <!-- Capa Superior de Hojas -->
+                <g class="leaf leaf-group-3" transform="translate(185, 190) rotate(-20) scale(0.9)"><use href="#singleLeaf"/></g>
+                <g class="leaf leaf-group-3" transform="translate(215, 190) rotate(20) scale(0.9)"><use href="#singleLeaf"/></g>
+                <g class="leaf leaf-group-3" transform="translate(135, 210) rotate(-40) scale(0.95)"><use href="#singleLeaf"/></g>
+                <g class="leaf leaf-group-3" transform="translate(265, 210) rotate(40) scale(0.95)"><use href="#singleLeaf"/></g>
             </g>
 
-            <!-- ROSAS -->
-            <g id="rosesGroup">
-                <!-- Rosa 1: Centro -->
-                <g class="rose-head rose-1" transform="translate(200, 140)">
-                    <path d="M -15 20 Q 0 35 15 20 Q 0 10 -15 20" fill="#2d5a27"/>
-                    <path d="M -30 5 C -35 -20 35 -20 30 5 C 35 30 -35 30 -30 5 Z" fill="url(#rosePetalGrad2)"/>
-                    <path d="M -22 -5 C -25 -25 25 -25 22 -5 C 25 20 -25 20 -22 -5 Z" fill="url(#rosePetalGrad1)"/>
-                    <path d="M -15 -10 C -18 -22 18 -22 15 -10 C 18 12 -18 12 -15 -10 Z" fill="#ff1493"/>
-                    <path d="M -8 -12 C -10 -18 10 -18 8 -12 C 10 5 -10 5 -8 -12 Z" fill="#ffb6c1"/>
-                    <circle cx="0" cy="-10" r="4" fill="#ffffff" opacity="0.6"/>
-                </g>
-                <!-- Rosa 2: Izquierda alta -->
-                <g class="rose-head rose-2" transform="translate(135, 165)">
-                    <path d="M -28 5 C -33 -18 30 -18 26 5 C 30 28 -30 28 -28 5 Z" fill="url(#rosePetalGrad1)"/>
-                    <path d="M -20 -4 C -22 -22 22 -22 18 -4 C 22 18 -22 18 -20 -4 Z" fill="url(#rosePetalGrad2)"/>
-                    <path d="M -12 -8 C -15 -18 15 -18 12 -8 C 15 10 -15 10 -12 -8 Z" fill="#ff3399"/>
-                    <circle cx="-2" cy="-8" r="3" fill="#ffffff" opacity="0.5"/>
-                </g>
-                <!-- Rosa 3: Derecha alta -->
-                <g class="rose-head rose-3" transform="translate(265, 165)">
-                    <path d="M -26 5 C -30 -18 33 -18 28 5 C 33 28 -28 28 -26 5 Z" fill="url(#rosePetalGrad1)"/>
-                    <path d="M -18 -4 C -22 -22 22 -22 20 -4 C 22 18 -22 18 -18 -4 Z" fill="url(#rosePetalGrad2)"/>
-                    <path d="M -12 -8 C -15 -18 15 -18 12 -8 C 15 10 -15 10 -12 -8 Z" fill="#ff3399"/>
-                    <circle cx="2" cy="-8" r="3" fill="#ffffff" opacity="0.5"/>
-                </g>
-                <!-- Rosa 4: Izquierda baja -->
-                <g class="rose-head rose-4" transform="translate(95, 215)">
-                    <path d="M -25 4 C -28 -16 28 -16 24 4 C 28 24 -26 24 -25 4 Z" fill="url(#rosePetalGrad2)"/>
-                    <path d="M -16 -3 C -18 -18 18 -18 15 -3 C 18 15 -18 15 -16 -3 Z" fill="url(#rosePetalGrad1)"/>
-                    <path d="M -10 -6 C -12 -15 12 -15 9 -6 C 12 8 -12 8 -10 -6 Z" fill="#ff1493"/>
-                </g>
-                <!-- Rosa 5: Derecha baja -->
-                <g class="rose-head rose-5" transform="translate(305, 215)">
-                    <path d="M -24 4 C -28 -16 25 -16 24 4 C 26 24 -28 24 -24 4 Z" fill="url(#rosePetalGrad2)"/>
-                    <path d="M -15 -3 C -18 -18 18 -18 16 -3 C 18 15 -18 15 -15 -3 Z" fill="url(#rosePetalGrad1)"/>
-                    <path d="M -9 -6 C -12 -15 12 -15 10 -6 C 12 8 -12 8 -9 -6 Z" fill="#ff1493"/>
-                </g>
+            <!-- ROSAS EN FORMA DE CAPULLO FLORECIENDO (7 FLORES BIEN DISTRIBUIDAS) -->
+            <g id="flowersGroup">
+                <!-- Flor 1: Centro Superior -->
+                <g class="flower-bud flower-1" transform="translate(200, 125) scale(1.15)"><use href="#flowerBud"/></g>
+
+                <!-- Flor 2: Izquierda Media Alta -->
+                <g class="flower-bud flower-2" transform="translate(145, 165) scale(1.1) rotate(-10)"><use href="#flowerBud"/></g>
+
+                <!-- Flor 3: Derecha Media Alta -->
+                <g class="flower-bud flower-3" transform="translate(255, 165) scale(1.1) rotate(10)"><use href="#flowerBud"/></g>
+
+                <!-- Flor 4: Izquierda Media -->
+                <g class="flower-bud flower-4" transform="translate(95, 205) scale(1.05) rotate(-20)"><use href="#flowerBud"/></g>
+
+                <!-- Flor 5: Derecha Media -->
+                <g class="flower-bud flower-5" transform="translate(305, 205) scale(1.05) rotate(20)"><use href="#flowerBud"/></g>
+
+                <!-- Flor 6: Izquierda Exterior Baja -->
+                <g class="flower-bud flower-6" transform="translate(60, 235) scale(0.95) rotate(-30)"><use href="#flowerBud"/></g>
+
+                <!-- Flor 7: Derecha Exterior Baja -->
+                <g class="flower-bud flower-7" transform="translate(340, 235) scale(0.95) rotate(30)"><use href="#flowerBud"/></g>
             </g>
 
-            <!-- ENVOLTORIO MARRÓN -->
+            <!-- ENVOLTORIO DE PAPEL KRAFT ELEGANTE -->
             <g id="wrapperGroup" class="wrapper-paper">
-                <path d="M 120 320 L 200 480 L 280 320 L 350 260 L 200 310 L 50 260 Z" fill="#a97443" opacity="0.7"/>
-                <path d="M 60 270 L 195 485 L 195 320 L 70 260 Z" fill="url(#paperFoldGrad)"/>
-                <path d="M 50 260 L 200 490 L 170 320 Z" fill="url(#paperGrad)"/>
-                <path d="M 350 260 L 200 490 L 230 320 Z" fill="url(#paperGrad)"/>
-                <polygon points="70,270 200,500 330,270 200,330" fill="url(#paperGrad)"/>
-                <path d="M 70 270 Q 200 340 330 270 L 200 500 Z" fill="url(#paperFoldGrad)" opacity="0.4"/>
+                <!-- Capa Trasera -->
+                <path d="M 110 320 L 200 480 L 290 320 L 370 240 L 200 290 L 30 240 Z" fill="#b07d56" opacity="0.6"/>
+                
+                <!-- Solapas de la envoltura -->
+                <path d="M 40 250 L 195 490 L 195 310 L 55 240 Z" fill="url(#paperFoldGrad)"/>
+                <path d="M 360 250 L 205 490 L 205 310 L 345 240 Z" fill="url(#paperFoldGrad)"/>
+
+                <!-- Frente Principal del Cono -->
+                <polygon points="50,250 200,510 350,250 200,320" fill="url(#paperGrad)"/>
+                
+                <!-- Pliegue y Sombra Frontal -->
+                <path d="M 50 250 Q 200 330 350 250 L 200 510 Z" fill="url(#paperFoldGrad)" opacity="0.35"/>
             </g>
 
-            <!-- LAZO ROSA -->
+            <!-- LAZO ROSA BONITO -->
             <g id="ribbonGroup" class="wrapper-ribbon">
-                <path d="M 195 420 Q 170 460 150 490 Q 165 495 185 460 Z" fill="url(#ribbonGrad)"/>
-                <path d="M 205 420 Q 230 460 250 490 Q 235 495 215 460 Z" fill="url(#ribbonGrad)"/>
-                <path d="M 200 420 C 160 390 140 430 195 423 Z" fill="url(#ribbonGrad)"/>
-                <path d="M 200 420 C 240 390 260 430 205 423 Z" fill="url(#ribbonGrad)"/>
-                <circle cx="200" cy="421" r="8" fill="#ff1493"/>
-                <circle cx="199" cy="420" r="6" fill="url(#ribbonGrad)"/>
+                <!-- Cintas caídas -->
+                <path d="M 195 435 Q 165 475 140 510 Q 158 515 185 475 Z" fill="url(#ribbonGrad)"/>
+                <path d="M 205 435 Q 235 475 260 510 Q 242 515 215 475 Z" fill="url(#ribbonGrad)"/>
+                
+                <!-- Orejas del moño -->
+                <path d="M 200 435 C 150 400 130 445 192 438 Z" fill="url(#ribbonGrad)"/>
+                <path d="M 200 435 C 250 400 270 445 208 438 Z" fill="url(#ribbonGrad)"/>
+                
+                <!-- Nudo central -->
+                <circle cx="200" cy="436" r="9" fill="#e60073"/>
+                <circle cx="199" cy="435" r="7" fill="url(#ribbonGrad)"/>
             </g>
         </svg>
     </div>
@@ -368,7 +428,7 @@
     <script>
         function createStars() {
             const container = document.getElementById('starsContainer');
-            for (let i = 0; i < 60; i++) {
+            for (let i = 0; i < 70; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
                 const size = Math.random() * 3 + 1;
@@ -384,20 +444,20 @@
 
         function createParticles() {
             const stage = document.getElementById('stage');
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 25; i++) {
                 setTimeout(() => {
                     const particle = document.createElement('div');
                     particle.className = 'particle';
-                    const size = Math.random() * 6 + 3;
+                    const size = Math.random() * 7 + 3;
                     particle.style.width = `${size}px`;
                     particle.style.height = `${size}px`;
-                    particle.style.left = `${Math.random() * 260 + 60}px`;
-                    particle.style.bottom = `${Math.random() * 200 + 150}px`;
+                    particle.style.left = `${Math.random() * 300 + 60}px`;
+                    particle.style.bottom = `${Math.random() * 220 + 160}px`;
                     particle.style.setProperty('--duration', `${Math.random() * 2 + 2.5}s`);
                     stage.appendChild(particle);
 
                     setTimeout(() => particle.remove(), 4500);
-                }, i * 300 + 1500);
+                }, i * 250 + 1200);
             }
         }
 
